@@ -9,23 +9,22 @@ var PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var maxtables = 5;
 var tables = [
     {
-        "table":1,
         "id":"id1",
         "name":"Dracula",
         "email":"dracula@gmail.com",
         "phone":"123-456-7890"
     },
     {
-        "table":2,
         "id":"id2",
         "name":"Frankenstein",
         "email":"frankenstein@gmail.com",
         "phone":"098-765-4321"
     }
 ];
+
+var waitlist = [];
 
 app.listen(PORT, function(){
     console.log("App is listening on PORT " +PORT);
@@ -51,6 +50,11 @@ app.get("/api/tables", function(req, res) {
     return res.json(tables);
 });
 
+// Displays waitlist
+app.get("/api/waitlist", function(req, res) {
+    return res.json(waitlist);
+});
+
 // Displays a single table
 app.get("/api/tables/:tables", function(req, res) {
     var chosen = req.params.tables;
@@ -62,8 +66,10 @@ app.get("/api/tables/:tables", function(req, res) {
 app.post("/api/tables", function(req, res) {
     var newtable = req.body;  
     console.log(newtable);
-    newtable.table=tables.length+1;
-    tables.push(newtable);
-    
-    res.json(newtable);
+    if (tables.length<5){
+        tables.push(newtable);
+    } else {;
+        waitlist.push(newtable);
+    }
+    //res.json(newtable);
 });
