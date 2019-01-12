@@ -5,6 +5,23 @@ var app = express();
 
 var PORT = 3000;
 
+var customers = [
+    {
+        "id":"1",
+        "name":"Dracula",
+        "email":"dracula@gmail.com",
+        "phone":"123-456-7890",
+        "table":"1"
+    },
+    {
+        "id":"2",
+        "name":"Frankenstein",
+        "email":"frankenstein@gmail.com",
+        "phone":"098-765-4321",
+        "table":"2"
+    }
+];
+
 app.listen(PORT, function(){
     console.log("App is listening on PORT " +PORT);
 });
