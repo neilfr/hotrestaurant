@@ -5,6 +5,10 @@ var app = express();
 
 var PORT = 3000;
 
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 var customers = [
     {
         "id":"1",
@@ -43,3 +47,10 @@ app.get("/reservations", function(req,res){
     //res.send("Welcome to Reservations Page!");
     res.sendFile(path.join(__dirname,'reservations.html'));
 });
+
+// Displays a single customer
+app.get("/api/customers/:customer", function(req, res) {
+    var chosen = req.params.customer;
+    console.log(chosen);
+   return res.json(customers[chosen-1]);
+  });
