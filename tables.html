@@ -27,7 +27,7 @@
                <hr>
                <div>
 
-                   <a href="/make-reservation"><button class="btn btn-danger btn-lg"><span class="fa fa-ticket"></span>
+                   <a href="/reservations"><button class="btn btn-danger btn-lg"><span class="fa fa-ticket"></span>
                            Make Reservation</button></a>
                </div>
 
@@ -46,13 +46,9 @@
                    <div class="tables">
                        <h2 class="header"></h2>
                        <div class="card-body">
-                           <h3 id="tableID">
-                               </h2>
+                           <h3 id="tableID"></h3>
                                <div id="stats">
-                                   <h3><strong>Name:</strong> <span id="name"></span></h3>
-                                   <h3><strong>Email:</strong> <span id="email"></span></h3>
-                                   <h3><strong>Phone:</strong> <span id="phone"></span></h3>
-                                   <h3><strong>ID:</strong> <span id="id"></span></h3>
+
                                </div>
                        </div>
                    </div>
@@ -70,11 +66,30 @@
 $.get("/api/tables", function(data){
     console.log("hello world");
     console.log(data);
-    console.log(data[0].name);
-    $('#name').html(data[0].name);
-    $('#email').html(data[0].email);
-    $('#phone').html(data[0].phone);
-    $('#id').html(data[0].id);
+    var myTable=$('<div>').addClass("myTable");
+    for(var i=0;i<data.length;i++){
+        console.log(data[i].name);
+        var html = '<div><b>Name: </b>' + data[i].name + '<br></div>' +
+        '<div><b>Email: </b>' + data[i].email + '<br></div>'+ 
+        '<div><b>Phone: </b>' + data[i].phone + '<br></div>'+
+        '<div><b>ID: </b>' + data[i].id + '<br></div><br>';
+        $('#stats').append(html);
+
+    /*    $('table').html(i);
+        $('name').html(data[i].name);
+        $('email').html(data[i].email);
+        $('#phone').html(data[i].phone);
+        $('#id').html(data[i].id);
+*/
+       
+        // $('.myTable').html("Table: "+i);
+        // $('.myTable').html("Name: "+data[i].name);
+        // $('.myTable').html("Email: "+data[i].email);
+        // $('.myTable').html("Phone: "+data[i].phone);
+        // $('.myTable').html("ID: "+data[i].id);
+        //$('#stats').append(myTable);
+
+    }
 });
 </script>
 
