@@ -9,20 +9,21 @@ var PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var customers = [
+var maxtables = 5;
+var tables = [
     {
-        "id":"1",
+        "table":1,
+        "id":"id1",
         "name":"Dracula",
         "email":"dracula@gmail.com",
-        "phone":"123-456-7890",
-        "table":"1"
+        "phone":"123-456-7890"
     },
     {
-        "id":"2",
+        "table":2,
+        "id":"id2",
         "name":"Frankenstein",
         "email":"frankenstein@gmail.com",
-        "phone":"098-765-4321",
-        "table":"2"
+        "phone":"098-765-4321"
     }
 ];
 
@@ -32,25 +33,37 @@ app.listen(PORT, function(){
 
 app.get("/", function(req,res){
     console.log("Home!");
-   // res.send("Welcome to Table Finder!");
     res.sendFile(path.join(__dirname,'home.html'));
 });
 
 app.get("/tables", function(req,res){
     console.log("Tables!");
-    //res.send("Welcome to Tables Page!");
     res.sendFile(path.join(__dirname,'tables.html'));
 });
 
 app.get("/reservations", function(req,res){
     console.log("Reservations!");
-    //res.send("Welcome to Reservations Page!");
     res.sendFile(path.join(__dirname,'reservations.html'));
 });
 
-// Displays a single customer
-app.get("/api/customers/:customer", function(req, res) {
-    var chosen = req.params.customer;
+// Displays all tables
+app.get("/api/tables", function(req, res) {
+    return res.json(tables);
+});
+
+// Displays a single table
+app.get("/api/tables/:tables", function(req, res) {
+    var chosen = req.params.tables;
     console.log(chosen);
-   return res.json(customers[chosen-1]);
-  });
+    return res.json(tables[chosen-1]);
+});
+
+// Create New Table - takes in JSON input
+app.post("/api/tables", function(req, res) {
+    var newtable = req.body;  
+    console.log(newtable);
+    newtable.table=tables.length+1;
+    tables.push(newtable);
+    
+    res.json(newtable);
+});
