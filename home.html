@@ -1,15 +1,48 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>HOME</title>
-    </head>
-    <body>
-        Hot Restaurant Home Page
-        <form method='get' action='/tables'>
-            <input type='submit' value='tables'>
-        </form>
-        <form method='get' action='/reservations'>
-            <input type='submit' value='reservations'>
-        </form>
-    </body>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Hot REsturant</title>
+   <!-- Latest compiled and minified CSS & JS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src="https://code.jquery.com/jquery.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+   <style>
+       .vertical-center {
+           text-align: center;
+       }
+   </style>
+</head>
+
+<body>
+
+   <div class="container">
+       <div class="jumbotron vertical-center">
+           <div class="container">
+               <h1><span class="fa fa-fire"></span>Hot Resturant</h1>
+               <h3>Book your seat before they are gone</h3>
+               <hr>
+               <div>
+                   <a href="/tables"><button class="btn btn-primary btn-lg"><span class="fa fa-table"></span>
+                           View
+                           Tables</button></a>
+                   <a href="/reservations"><button class="btn btn-danger btn-lg"><span class="fa fa-ticket"></span>
+                           Make Reservation</button></a>
+               </div>
+
+
+           </div>
+       </div>
+       <div>
+           <a style="border-right:1px solid gray;padding-right: 5px;" href="url">API Table Link</a>
+           <a href="url"> API Wait List</a>
+       </div>
+   </div>
+
+
+</body>
+
 </html>

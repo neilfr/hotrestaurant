@@ -36,6 +36,9 @@ app.get("/", function(req,res){
 });
 
 app.get("/tables", function(req,res){
+    // TODO 
+    // SELECT FROM DB 
+    
     console.log("Tables!");
     res.sendFile(path.join(__dirname,'tables.html'));
 });
